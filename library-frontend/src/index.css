@@ -1,0 +1,30 @@
+.nav {
+  display: flex;
+  text-decoration: none;
+  justify-content: space-between;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-link {
+  text-decoration: none;
+}
+
+.status {
+  font-weight: bold;
+  font-style: italic;
+  font-size: large;
+}
+
+.notification {
+  color: red;
+  background-color: lightgrey;
+  font-size: 20px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
