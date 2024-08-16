@@ -32,8 +32,6 @@ const SetBirthyear = ({ authors, user, setError }) => {
     label: author.name,
   }))
 
-  console.log(name)
-
   if (!user) return null
 
   return (

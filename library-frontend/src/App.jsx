@@ -9,9 +9,6 @@ import AppRoutes from './components/AppRoutes'
 import Footer from './components/Footer'
 
 export const updateCache = (cache, query, addedBook) => {
-  // const cacheData = cache.readQuery({ query: ALL_BOOKS })
-  // console.log(cacheData)
-
   const uniqById = (a) => {
     let seen = new Set()
     return a.filter((item) => {

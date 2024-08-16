@@ -5,7 +5,6 @@ import GenreButtons from './GenreButtons'
 import Book from './Book'
 
 const Books = () => {
-  console.log('Books mounting...')
   const [genre, setGenre] = useState('')
 
   const { loading, error, data } = useQuery(
