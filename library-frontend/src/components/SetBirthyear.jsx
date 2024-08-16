@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { ALL_AUTHORS, EDIT_AUTHOR } from '../queries'
 import Select from 'react-select'
 
-const SetBirthyear = ({ authors, user }) => {
+const SetBirthyear = ({ authors, user, setError }) => {
   const [name, setName] = useState('')
   const [born, setBorn] = useState('')
 

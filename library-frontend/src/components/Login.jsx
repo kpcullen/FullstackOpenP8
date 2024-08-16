@@ -26,7 +26,7 @@ const Login = ({ setError, setUser }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     await login({ variables: { username, password } })
-    navigate('/authors')
+    navigate('/books')
   }
 
   return (

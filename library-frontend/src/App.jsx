@@ -1,35 +1,28 @@
 import { useEffect, useState } from 'react'
-import Authors from './components/Authors'
-import Books from './components/Books'
-import NewBook from './components/NewBook'
-import Login from './components/Login'
-
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link,
-  useNavigate,
-} from 'react-router-dom'
+import { BrowserRouter as Router, useNavigate } from 'react-router-dom'
+import { BOOK_ADDED, ALL_BOOKS } from './queries'
 
 import { useApolloClient, useSubscription } from '@apollo/client'
-import Recommendations from './components/Recommendations'
-import { BOOK_ADDED } from './queries'
 import Notification from './components/Notification'
 import NavBar from './components/NavBar'
+import AppRoutes from './components/AppRoutes'
+import Footer from './components/Footer'
 
 export const updateCache = (cache, query, addedBook) => {
-  const uniqByTitle = (a) => {
+  // const cacheData = cache.readQuery({ query: ALL_BOOKS })
+  // console.log(cacheData)
+
+  const uniqById = (a) => {
     let seen = new Set()
     return a.filter((item) => {
-      let k = item.title
+      let k = item.id
       return seen.has(k) ? false : seen.add(k)
     })
   }
 
   cache.updateQuery(query, ({ allBooks }) => {
     return {
-      allBooks: uniqByTitle([...allBooks, addedBook]),
+      allBooks: uniqById([...allBooks, addedBook]),
     }
   })
 }
@@ -66,6 +59,7 @@ const App = () => {
   })
 
   const logout = async () => {
+    // await client.stop()
     await client.resetStore()
     localStorage.clear()
     setUser('')
@@ -85,23 +79,9 @@ const App = () => {
 
       <Notification errorMessage={errorMessage} />
 
-      <Routes>
-        <Route path="/" element={<Authors user={user} />} />
-        <Route path="/authors" element={<Authors user={user} />} />
-        <Route path="/books" element={<Books setError={handleSetError} />} />
-        <Route
-          path="/newBook"
-          element={<NewBook setError={handleSetError} />}
-        />
-        <Route
-          path="/recommendations"
-          element={<Recommendations user={user} />}
-        />
-        <Route
-          path="login"
-          element={<Login setUser={setUser} setError={handleSetError} />}
-        />
-      </Routes>
+      <AppRoutes user={user} setUser={setUser} setError={handleSetError} />
+
+      <Footer />
     </div>
   )
 }

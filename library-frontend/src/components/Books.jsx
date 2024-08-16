@@ -1,5 +1,5 @@
-import { useQuery, useSubscription } from '@apollo/client'
-import { ALL_BOOKS, BOOK_ADDED, FIND_BOOKS_BY_GENRE } from '../queries'
+import { useQuery } from '@apollo/client'
+import { ALL_BOOKS, FIND_BOOKS_BY_GENRE } from '../queries'
 import { useState } from 'react'
 import GenreButtons from './GenreButtons'
 import Book from './Book'
@@ -10,6 +10,7 @@ const Books = () => {
 
   const { loading, error, data } = useQuery(
     genre ? FIND_BOOKS_BY_GENRE : ALL_BOOKS,
+    { fetchPolicy: 'cache-first' },
     { variables: genre ? { genre } : {} }
   )
 
