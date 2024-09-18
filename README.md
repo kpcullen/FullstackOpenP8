@@ -30,6 +30,8 @@ Create a `.env` file in the project root directory and set the following environ
 
 **Technologies Used:**
 
+- React
+- React Router
 - Node.js
 - Express
 - GraphQL
