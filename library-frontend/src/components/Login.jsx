@@ -12,7 +12,7 @@ const Login = ({ setError, setUser }) => {
     onCompleted: (data) => {
       const libraryUser = data.login
       const token = data.login.value
-      console.log(data.login)
+
       setUser(libraryUser)
 
       localStorage.setItem('library-user-token', token)
